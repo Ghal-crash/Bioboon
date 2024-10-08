@@ -19,6 +19,34 @@
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Add shadow for a 3D effect */
             overflow: hidden;
 		}
+		#install-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#ios-prompt {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#ios-prompt button {
+  background-color: #ff5722;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 	</style>
 </head>
 <body>
@@ -139,35 +167,61 @@
     });
   }
 </script>
-<!-- <script>
+<script>
 	let deferredPrompt;
-  
-	window.addEventListener('beforeinstallprompt', (e) => {
-	  // Prevent the mini-infobar from appearing on mobile
-	  e.preventDefault();
-	  // Stash the event so it can be triggered later.
-	  deferredPrompt = e;
-  
-	  // Optionally, add a button for the user to manually trigger installation
-	  const installButton = document.createElement('button');
-	  installButton.textContent = 'Install App';
-	  document.body.appendChild(installButton);
-  
-	  installButton.addEventListener('click', () => {
-		// Show the prompt
-		deferredPrompt.prompt();
-		// Wait for the user to respond to the prompt
-		deferredPrompt.userChoice.then((choiceResult) => {
-		  if (choiceResult.outcome === 'accepted') {
-			console.log('User accepted the A2HS prompt');
-		  } else {
-			console.log('User dismissed the A2HS prompt');
-		  }
-		  deferredPrompt = null;
-		});
-	  });
-	});
-  </script> -->
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Store the event so it can be triggered later.
+  deferredPrompt = e;
+  // Show your custom install prompt UI here (e.g., a button or modal)
+  showInstallPromotion();
+});
+
+function showInstallPromotion() {
+  const installButton = document.getElementById('install-btn');
+  installButton.style.display = 'block'; // Show the install button
+}
+
+document.getElementById('install-btn').addEventListener('click', async () => {
+  if (deferredPrompt) {
+    // Show the install prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      console.log('User accepted the install prompt');
+    } else {
+      console.log('User dismissed the install prompt');
+    }
+    deferredPrompt = null;
+  }
+});
+
+function showIosInstallPrompt() {
+  const iosPrompt = document.getElementById('ios-prompt');
+  iosPrompt.style.display = 'block';
+}
+
+function isIos() {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test(userAgent);
+}
+
+function isInStandaloneMode() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+}
+
+if (isIos() && !isInStandaloneMode()) {
+  // Show the custom install prompt for iOS
+  showIosInstallPrompt();
+}
+
+document.getElementById('dismiss-btn').addEventListener('click', () => {
+  document.getElementById('ios-prompt').style.display = 'none';
+});
+</script>
   
 
 
