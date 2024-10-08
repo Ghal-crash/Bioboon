@@ -129,7 +129,7 @@
 	
 	// Fetch data from ThingSpeak
 	function fetchData(callback) {
-		var apiUrl = 'https://api.thingspeak.com/channels/XXXXX/feeds/last.json?timezone=Asia%2FJakarta&api_key=XXXXXXXX';
+		var apiUrl = 'https://api.thingspeak.com/channels/2680584/feeds/last.json?timezone=Asia%2FJakarta&api_key=2680584';
 		fetch(apiUrl)
 		.then(response => response.json())
 		.then(data => {
