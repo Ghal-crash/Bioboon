@@ -2,7 +2,7 @@
     "name": "bioboon",
     "version": "1.0.0",
     "description": "Bioboon - Monitoring Biogas",
-    "main": "gps-tracking.html",
+    "main": "index.html",
     "scripts": {
         "start": "lite-server"
     },
