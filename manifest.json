@@ -2,7 +2,7 @@
     "name": "Bioboon",
     "short_name": "Bioboon",
     "description": "Bioboon - Monitoring Biogas and Bio-slurry",
-    "start_url": "/gps-tracking.html",
+    "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
