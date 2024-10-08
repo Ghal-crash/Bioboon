@@ -1,7 +1,7 @@
 const cacheName = 'bioboon-v1';
 const staticAssets = [
   './',
-  './gps-tracking.html',
+  './index.html',
   './aboutPage.html',
   './assets/bioboon-img.png',
   './assets/personImg/',
