@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioboon</title>
+    <link rel="icon" type="image/x-icon" href="./assets/bioboon-img.ico">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            background: #c5cae9;
+            flex-direction: column;
+        }
+
+        .logo {
+            margin-bottom: 0px;
+        }
+
+        .appName{
+          font-family: sans-serif;
+          size: 14px;
+          
+        }
+
+        .desName{
+          font-family: sans-serif;
+          size: 14px;
+          margin-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px; /* Spacing between loading circles and logo */
+        }
+
+        .circle {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #1a237e;
+            margin: 0 5px;
+            animation: grow 0.6s ease-in-out infinite alternate;
+        }
+
+        .circle:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .circle:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .circle:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes grow {
+            from {
+                transform: scale(0.5);
+                opacity: 0.7;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+      <img src="../assets/bioboon-img.png" alt="Bioboon Logo" width="100">
+    </div>
+    <p class="appName">Bioboon Tech</p>
+    <p class="desName">PKM-PM Bioboon</p>
+    <div class="container">
+        <span class="circle"></span>
+        <span class="circle"></span>
+        <span class="circle"></span>
+        <span class="circle"></span>
+    </div>
+    <script>
+      // Redirect to index.html after 3 seconds
+      // setTimeout(function() {
+      //     window.location.href = "index.html"; // Change to your next page
+      // }, 3000); // 3000 ms = 3 seconds
+  </script>
+</body>
+</html>

@@ -148,9 +148,8 @@
 			marker.on('click', function() {
 				fetchData(function(data) {
 					var content = "<b>" + house.name + "</b><br>"
-						+ "Field1: " + data.field1 + "<br>"
-						+ "Metana : " + data.field2 + "<br>"
-						+ "Karbondioksida : " + data.field3 + "<br>"
+						+ "Gas Metana: " + data.field1 + "<br>"
+						+ "Gas Karbondioksida : " + data.field2 + "<br>"
 					marker.setPopupContent(content).openPopup();
 				});
 			});
