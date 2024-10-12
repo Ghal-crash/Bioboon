@@ -48,6 +48,24 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    z-index: 1000;
+}
+
+.notification.show {
+    opacity: 1;
+}
 	</style>
 </head>
 <body>
@@ -83,6 +101,7 @@
 <div class="container-fluid mt-4">
 	<div class="row justify-content-center">
 		<div class="fw-bolder">
+			<div id="notification" class="notification" style="display: none;"></div>
 			<p class="text-center">Monitoring Biogas</p>
 		</div>
 		<div class="col-lg-8">
@@ -151,9 +170,34 @@
             + "Gas Metana: " + parseFloat(data.field1).toFixed(3) + " ppm<br>"
             + "Gas Karbondioksida: " + parseFloat(data.field2).toFixed(3) + " ppm<br>";
         	marker.setPopupContent(content).openPopup();
+
+			checkForOptimalConditions(methaneLevel, co2Level);
     			});
 			});
 		});
+	}
+	// Function to check for optimal burning conditions
+function checkForOptimalConditions(methaneLevel, co2Level) {
+    var notification = document.getElementById('notification');
+    notification.style.display = 'none'; // Hide notification initially
+
+    // Check methane levels for optimal burning
+    if (methaneLevel >= 50000 && methaneLevel <= 150000) {
+        notification.innerHTML = "Distribusi Berhasil";
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000); // Hide after 3 seconds
+    }
+
+    // Check CO2 levels (adjust the threshold as needed)
+    if (co2Level > 1000) {
+        notification.innerHTML = "Peringatan: Konsentrasi Gas Karbon Dioksida Tinggi!";
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000); // Hide after 3 seconds
+    }
 	}
 	
 	// Call the function to create markers
