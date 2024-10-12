@@ -146,12 +146,12 @@
 
 			// Update marker with data on click
 			marker.on('click', function() {
-				fetchData(function(data) {
-					var content = "<b>" + house.name + "</b><br>"
-						+ "Gas Metana: " + data.field1 + "<br>"
-						+ "Gas Karbondioksida : " + data.field2 + "<br>"
-					marker.setPopupContent(content).openPopup();
-				});
+    		fetchData(function(data) {
+        	var content = "<b>" + house.name + "</b><br>"
+            + "Gas Metana: " + parseFloat(data.field1).toFixed(3) + " ppm<br>"
+            + "Gas Karbondioksida: " + parseFloat(data.field2).toFixed(3) + " ppm<br>";
+        	marker.setPopupContent(content).openPopup();
+    			});
 			});
 		});
 	}
